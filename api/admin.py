@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import Task
 
-@admin.register(Task)
+
 class TaskAdmin(admin.ModelAdmin):
     list_display = ('title', 'completed')
     list_filter = ('completed', 'created', 'updated')
@@ -19,3 +19,5 @@ class TaskAdmin(admin.ModelAdmin):
     @admin.action(description='mark as uncompleted')
     def mark_as_uncompleted(self, request, queryset):
         queryset.update(completed=False)
+
+admin.site.register(Task, TaskAdmin)
